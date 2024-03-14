@@ -9,6 +9,7 @@ import os, logger
 
 version = "V0.3" #Current software version
 
+
 def isConfiguredProperly():
     if os.path.exists(".env"):
         return True
@@ -40,11 +41,36 @@ def askYN(question:str):
         sl(1)
         exit(0)
 
-
+def keyExists(table, key):
+    try:
+        temp = table[key]
+        del temp 
+        return True
+    except KeyError:
+        return False
+    except IndexError:
+        return False
+    
+def configurecookie(args):
+    print("ok")
+    return
+commands = {
+    'configure.cookie': configurecookie
+}
 def startCLI():
     """The main input function. This starts the command line basically"""
     try:
-        input1 = input("> ")
+        input1 = input("> ").lower()
+        args = input1.split(" ")
+        if keyExists(commands, args[0])== True:
+            cmdname = args[0]
+            del args[0] #Remove the command name from the arguments
+            commands[cmdname](args)
+            del args, cmdname
+            startCLI()
+        else:
+            logger.FAIL("Command not found!")
+            startCLI()
     except KeyboardInterrupt:
         logger.FAIL("Shutting down..")
         sl(1)
@@ -54,6 +80,6 @@ if isConfiguredProperly() == False:
     logger.FAIL("Join Assistant is not configured properly.")
     logger.FAIL("Read README.md for information on how to start and configure this program")
 
-print(f"Join Assistant Version {version}")
+print(f" Join Assistant Version {version}") #For some reason this needs a space
 logger.WARN(f"Close this terminal or press {controlOrCommand()}+C to exit")
-askYN("hi")
+startCLI()

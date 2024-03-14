@@ -13,13 +13,13 @@ If you want more information on the various settings, check the settings catagor
 
 # Commands
 These are commands you can run in the appliction
-### new event 
+### new-event 
 > Args: `duration`, `starttime` <br><br>
 > This command will setup a new event with the provided arguments. If none are provided, it will prompt. This returns a custom event id
-### end event 
+### end-event 
 > Args: `event id`<br><br>
 > This event will end an event early which matches the provided id. If no ID is provided it uses the most recent ID
-### extend event 
+### extend-event 
 > Args: `event id`, `duration`<br><br>
 > Adds the duration in minutes to the event with the corresponding id. If you do not provide an ID it will fallback to the most recent ID. If you do not provide a duration, it will prompt you
 
