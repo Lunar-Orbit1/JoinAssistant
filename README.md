@@ -16,28 +16,22 @@ These are commands you can run in the appliction
 ### new-event 
 > Args: `duration`, `starttime` <br><br>
 > This command will setup a new event with the provided arguments. If none are provided, it will prompt. This returns a custom event id
+### list-events 
+> No arguments<br><br>
+> Lists all of the events currently saved and their IDs
 ### end-event 
 > Args: `event id`<br><br>
 > This event will end an event early which matches the provided id. If no ID is provided it uses the most recent ID
 ### extend-event 
 > Args: `event id`, `duration`<br><br>
 > Adds the duration in minutes to the event with the corresponding id. If you do not provide an ID it will fallback to the most recent ID. If you do not provide a duration, it will prompt you
-
+### edit-cookie
+> No arguments <br><br>
+> This will configure the ROBLOSECURITY cookie the application uses.
 <hr>
 
-# Settings
-To edit settings in the program, type `configure.{setting name}`. As an example: `configure.cookie` will let you edit your ROBLOX credentials.
-
-### cookie
->`default: null` <br>
-> This is the main token used to authenticate your account with the Roblox api.
-### defaultjoins
->`default: auto` <br>
-> This configures what your joins will be turned to after the event finishes. Valid options are `friends`, `followers`, `following`, `none`, `all` and `auto` which will reset your joins to what they were before the event started
-### defaultduration
->`default: 30` <br>
-> This will configure how long events are by default. This is a fallback used in-case you forget to enter in an event duration. Set to 0 to get an error message instead
-<hr>
+# Cookies
+Because this application needs to interact with your ROBLOX account settings, you need a ROBLOSECURITY cookie. This is a token specific to your ROBOX account that resets when you log out and log in, or change your password. When you first start the program, you will need to configure your cookie with `edit-cookie`. Please paste the full cookie in, **Including the warning text**
 
 # Privacy Policy
 Because this application handles sensitive data pertaining to your ROBLOX account (your account's ROBLOSECURITY cookie), this body of text shows what we (the program) do with the data you enter.

@@ -5,9 +5,9 @@ from requests import post as postreq
 from requests import get as getreq
 from time import sleep as sl
 import platform
-import os, logger
+import os, logger #Logger is a custom module, ./logger.py
 
-version = "V0.3" #Current software version
+version = "V0.4" #Current software version
 
 
 def isConfiguredProperly():
@@ -41,6 +41,9 @@ def askYN(question:str):
         sl(1)
         exit(0)
 
+def askInput():
+    return input("> ")
+
 def keyExists(table, key):
     try:
         temp = table[key]
@@ -52,15 +55,26 @@ def keyExists(table, key):
         return False
     
 def configurecookie(args):
-    print("ok")
-    return
+    """Shows the user the configure cookie menu"""
+    print("EDIT YOUR COOKIE\n\nedit: Changes your cookie\nremove: removes your cookie\ncancel: Exits the cookie editor")
+    imp = askInput()
+    args = imp.split(" ")
+    # I'm not making a command handler for this..
+    if args[0].lower == "edit":
+        print("editcookie")
+    elif args[0].lower == "remove":
+        print("remove cookie")
+    elif args[0].lower == "cancel":
+        logger.FAIL("Exiting cookie editor")
+        startCLI()
+
 commands = {
-    'configure.cookie': configurecookie
+    'edit-cookie': configurecookie
 }
 def startCLI():
     """The main input function. This starts the command line basically"""
     try:
-        input1 = input("> ").lower()
+        input1 = askInput().lower()
         args = input1.split(" ")
         if keyExists(commands, args[0])== True:
             cmdname = args[0]
@@ -80,6 +94,6 @@ if isConfiguredProperly() == False:
     logger.FAIL("Join Assistant is not configured properly.")
     logger.FAIL("Read README.md for information on how to start and configure this program")
 
-print(f" Join Assistant Version {version}") #For some reason this needs a space
+print(f"Join Assistant Version {version}") #For some reason this needs a space
 logger.WARN(f"Close this terminal or press {controlOrCommand()}+C to exit")
 startCLI()
